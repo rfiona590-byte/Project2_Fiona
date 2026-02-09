@@ -95,6 +95,10 @@ StyleCopReport.xml
 *.pgc
 *.pgd
 *.rsp
+
+# VS Code build stuff
+*/obj
+
 # but not Directory.Build.rsp, as it configures directory-level build defaults
 !Directory.Build.rsp
 *.sbr
