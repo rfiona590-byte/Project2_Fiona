@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 namespace Adventure
 {
     class Chicken
@@ -35,14 +37,14 @@ namespace Adventure
     public static class Game
     {
         //setting up variables
-        static string confidenceCheck = "";
-        static int maisyConfidence = 0;
-        static string moveOn = "";
-        static string choiceSelect = "";
-        static string nameSelect = "";
-        static string confidenceSelect = "";
-        static int chickenConfidence = 0;
-        static string name = "";
+        public static string confidenceCheck = "";
+        public static int maisyConfidence = 0;
+        public static string moveOn = "";
+        public static string choiceSelect = "";
+        public static string nameSelect = "";
+        public static string confidenceSelect = "";
+        public static int chickenConfidence = 0;
+        public static string name = "";
 
         /// <summary>
         /// starting the game. introduces game and sets initial maisy conidence
@@ -108,256 +110,46 @@ namespace Adventure
         public static void MainGame()
         {
             Console.Clear();
-            Actions();
-            choiceSelect = Console.ReadLine();
-
-            //checks what is entered, sends prompts based on choice
-            if (choiceSelect == "1")
+            ShowActions();
+            switch (int.Parse(Console.ReadLine()))
             {
-                // clears console for new prompts
-                Console.Clear();
+                case 1:
+                    Actions.Rest();
+                    break;
 
-                // rest prompt and choices
-                Dialouge("You decide to rest. You can either sleep normally, or you can sleep in one of your classic Maisy poses.", "white");
-                Dialouge("What do you do? Normal or unique?", "yellow");
-                choiceSelect = Console.ReadLine();
-                //sees what is typed, and decides what happens from there
-                if (choiceSelect == "Normal" || choiceSelect == "normal")
-                {
+                case 2:
+                    Actions.Observe();
+                    break;
+
+                case 3:
+                    Actions.Scavenge();
+                    break;
+
+                case 4:
+                    Actions.Train();
+                    break;
+
+                case 5:
+                    // clears console for new prompts
                     Console.Clear();
-                    Dialouge("You decide to take a nap normally, as any normal dog would do.", "white");
-                    Dialouge("Nobody makes fun of you. You gain 5 confidence points.", "green");
-                    maisyConfidence = maisyConfidence + 5;
-                }
-                else
-                {
-                    Dialouge("                                                                                                    \r\n                  @@+@@@                                                                            \r\n                @ --  +++=    +@@@                                                                  \r\n               @ - +++++++++++++++ @@                                                               \r\n               @ +++++++++++++++++++- *     @@                                                      \r\n              @ ++++++++++++++++++++++ +++++++ @                                                    \r\n              @ *#+++++++#+#*++++++++++ ++++  - @                                                   \r\n             @ +++++++++++++++++++++++########## @                                                  \r\n             @   ++++++++     ++++++++ ###### ##*#@                                                 \r\n             @   +++++++ @     ++#++++++    =+ + - @                                                \r\n             @ +++++++++=    ++####+++++++++++++++: @                                               \r\n              @ +++++++++++++#######+++ ++++++++++++  @@                                            \r\n              @ +++++###############+  +++++++++++++++++ :@                                         \r\n             @ ++++++############  ++++++++++++++++++++++++ @                                       \r\n           :@ ++++++########## ###+++++++++++++++++++++++++++ @                                     \r\n          @ -:    =########## ###+++++++++++++++++++++++++++++ @                                    \r\n           @ -:  : ####++++  @@@@#+++++++++++++++++++++++++++++=+@                                  \r\n            @    ++++++++ @ @@@@@@+++++++++++++++++++++++++++++++ @                                 \r\n             -@        @@  @@@@@@@@@++++++++++++++++++++++++++++++ @                                \r\n                *@@@@@     @ @@@@@@@@@#####++++++++++++++++++++++++ @                               \r\n                            @ @@@@@@@#######++++++++++++++++++++++++ @                              \r\n                            @-@@@@@@@########++++++++++++++++++++++++@                              \r\n                             @@ @@@@@@ ######+++++++++ ++++++++++++++ @                             \r\n                               @ # @@@@ #####+++++++ ++++++  +++++++++    @@                        \r\n                                @ ##  @@@ ###++++++ ++++ =#+++++++++++ +++++ @                      \r\n                                @ ######:@:.#++++++ +++ #++++++++++++ ++++++ @                      \r\n                                 @ #####:@@@ +++++#:-  ##+++++++++++ @@% @@@                        \r\n                                  @-#### @@@ #+++*# - ###+++++++++++  ####+ @                       \r\n                                  @ #### @@@ ##### --#####+++++++++++*####### @@                    \r\n                                   @:### @@=#####     ######+++++++++########### +@.                \r\n                                   @ ### @@ #### @@@@@ ##########  @@@    :@@  ####@@               \r\n                                   @ ### @@#### @     *@@@@@@@@@              @ #%@@ @              \r\n                                  @@ ## @@ ### @                              @  @@ @               \r\n                                @ ####:@@ ###.@                                @@.@@                \r\n                               @ = @@@ @ #### @                                                     \r\n                               @  @  @@ #### @                                                      \r\n                                 -@  @ #### @                                                       \r\n                                    @+#### @                                                        \r\n                                   @ ##### @                                                        \r\n                                  @   # # @                                                         \r\n                                  @  @@ @ @                                                         \r\n                                   @   @@                                                           \r\n                                                                                                    ", "yellow");
-                    Dialouge("You decide to push the laws of physics before you nap. You decide to choose between 3 poses.", "white");
-                    Dialouge("1. Paralell legs   2. Loaf   3. Let fate decide", "yellow");
-                    choiceSelect = Console.ReadLine();
+                    Challenge();
+                    break;
 
-                    //selection prompts
-                    if (choiceSelect == "1")
-                    {
-                        Dialouge("You put alot of effort into making sure your front legs are perfectly parralell before you rest.", "white");
-                        Dialouge("Everybody who passes you compliments you! They are shocked a dog is so good at geometry. Your confidence grows! You gain 15 confidence points.", "green");
-                        Dialouge("The chickens aren't as good at math. Your legs humble them, and they lose 10 confidence points.", "red");
-                        maisyConfidence = maisyConfidence + 15;
-                        chickenConfidence = chickenConfidence - 10;
-                    }
-                    else if (choiceSelect == "2")
-                    {
-                        Dialouge("You get inspired by your old cat pal. You decide to form a loaf in honor of him.", "white");
-                        Dialouge("Nobody really notices. You gain 5 confidence points.", "green");
-                        maisyConfidence = maisyConfidence + 5;
-                    }
-                    else if (choiceSelect == "3")
-                    {
-                        Dialouge("You flop around on the couch for a moment. After your done, you let whatever pose you're in be the pose you stick with.", "white");
-                        Dialouge("People notice, and they laugh. They talk about how even the chickens can sit better than you. You're devastated, and you lose 10 confidence points.", "red");
-                        Dialouge("The chickens overhear the conversation. They gain 5 confidence points.", "green");
-                        maisyConfidence = maisyConfidence - 10;
-                        chickenConfidence = chickenConfidence + 5;
-                    }
-                }
+                default:
+                    Console.Clear();
+                    Dialouge("That's not an option. Try again.", "red");
+                    MainGame();
+                    break;
 
-                // calls continue or challenge prompt
-                Continue("resting");
             }
-            else if (choiceSelect == "2")
-            {
-                // clears console for new prompts
-                Console.Clear();
 
-                // call observe prompt
-                Dialouge("You decide to observe your surroundings! Where do you observe?", "white");
-                Dialouge("Backyard or frontyard?", "yellow");
-                choiceSelect = Console.ReadLine();
-
-                //back or front? results
-                if (choiceSelect == "Backyard" || choiceSelect == "backyard")
-                {
-                    Dialouge("You  walk over to the back door. It is made of glass, so you can see through to the backyard.", "white");
-                    Dialouge("There are so many creatures you can watch! Select the number of which creature you decide to watch.", "white");
-                    Dialouge("1. Chickens   2. Birds   3. Tony   4. Squirrels ", "yellow");
-                    choiceSelect = Console.ReadLine();
-
-                    //selection prompts
-                    if (choiceSelect == "1")
-                    {
-                        Dialouge("You look at the chickens. You notice one in particular, " + name + ", and make eye contact with him.", "white");
-                        Dialouge("You bark, to intimidate, but " + name + " just finds it funny. You lose 15 confidence points.", "red");
-                        Dialouge("The sad, pathetic look on your face makes " + name + "'s confidence points get multiplied by 2!", "green");
-                        maisyConfidence = maisyConfidence - 15;
-                        chickenConfidence = chickenConfidence * 2;
-                    }
-                    else if (choiceSelect == "3")
-                    {
-                        Dialouge("Tony is doing dangerous tricks on a moterized vehicle in the backyard. You watch him, and imagine yourself in his place.", "white");
-                        Dialouge("You imagine how intimadating you could be! The excitement alone makes you gain 30 confidence points!", "green");
-                        Dialouge("Tony scares the life out of the chickens. " + name + " is especially spooked, and notices that you saw the extent of that fear. Embarassed, " + name + "loses 30 confidence points.", "red");
-                        maisyConfidence = maisyConfidence + 30;
-                        chickenConfidence = chickenConfidence - 30;
-                    }
-                    else if (choiceSelect == "2" || choiceSelect == "4")
-                    {
-                        Dialouge("The backyard is especially barren. There is a distinct lack of birds or squirrels.", "white");
-                        Dialouge("You immediatly get bored, and decide to do something else. Nobody gains confidence points.", "gray");
-                    }
-                }
-                else
-                {
-                    Dialouge("You go and sit on the top of the couch. It has a window at the perfect observing height.", "white");
-                    Dialouge("There are an abundance of birds and squirrels in the front yard. You also notice soem chipmunks. Enter the number of what you want to watch.", "white");
-                    Dialouge("1. Chipmunks   2. Birds   3. Squirrels ", "yellow");
-                    choiceSelect = Console.ReadLine();
-
-                    if (choiceSelect == "1")
-                    {
-                        Dialouge("You spot a family of chipmunks. There is one parent, and three children.", "white");
-                        Dialouge("You remember how recently you killed a chipmunk, and realize it must've belonged to that family. You feel guilty, and lose 10 confidence points.", "red");
-                        maisyConfidence = maisyConfidence - 10;
-                    }
-                    else if (choiceSelect == "2")
-                    {
-                        Dialouge("There are so many birds outside today! You watch them carefully, and begin to plan how you will rise up against " + name + ".", "white");
-                        Dialouge("safe to say, you have a pretty solid plan, and your confidence doubles!", "green");
-                        Dialouge("In the backyard, " + name + " feels an unexpected chill, like someone is planning evil things. " + name + " loses 10 confidence points.", "red");
-                        maisyConfidence = maisyConfidence * 2;
-                        chickenConfidence = chickenConfidence - 10;
-                    }
-                    else if (choiceSelect == "3")
-                    {
-                        Dialouge("You notice a squirrel on a tree that you recognize, since it visits the front yard often. Sometimes, you both look at eachother.", "white");
-                        Dialouge("At this point, you two are pretty much best friends! you assume that if you ever needed help, the squirrel would come help you. you gain 15 confidence points.", "green");
-                        maisyConfidence = maisyConfidence + 15;
-                    }
-                }
-
-                // calls continue or challenge prompt
-                Continue("observing");
-            }
-            else if (choiceSelect == "3")
-            {
-                // clears console for new prompts
-                Console.Clear();
-
-                // call scavenge prompts
-                Dialouge("You are suddenly reminded that the kitchen exists. The thought of the kitchen makes you hungry! Do you wait for the automatic feeder to go off, or do you scavenge for food in the kitchen?", "white");
-                Dialouge("Wait or scavenge?", "yellow");
-                choiceSelect = Console.ReadLine();
-
-                //selection prompts
-                if (choiceSelect == "Wait" || choiceSelect == "wait")
-                {
-                    Dialouge("You decide to be a good little Maisy and wait for your food. When the sound eventually plays and your food drops down, you run to your bowl.", "white");
-                    Dialouge("Tony yells at you to wait, and makes you do 5 spins in a row. You think you're getting food once you do the spins, but he tells you to sit and roll over 6 more times untill he lets you eat.", "white");
-                    Dialouge(name + " the chicken gathers all of the other chickens to watch you get bossed around. They all laugh, and you lose 20 confidence points.", "red");
-                    Dialouge("Your public shaming raises " + name + "'s confidence by 10 points.", "green");
-                    maisyConfidence = maisyConfidence - 20;
-                    chickenConfidence = chickenConfidence + 10;
-                }
-                else
-                {
-                    Dialouge("You decide to scavenge for food. You make your way into the kitchen, and notice that Fiona and Tony are making food.", "white");
-                    Dialouge("You realize you could sniff around the floor for dropped scraps, or you could beg for a little treat.", "white");
-                    Dialouge("What do you do? Beg or search?", "yellow");
-                    choiceSelect = Console.ReadLine();
-
-                    // beg or search
-                    if (choiceSelect == "Search" || choiceSelect == "search")
-                    {
-                        Dialouge("You put your dog abilities to work! You sniff around, hoping for a dropped piece of chicken or a shred of tomato.", "white");
-                        Dialouge("You find something! You aren't sure what you found, but you eat it anyway. Tony notices and yells at you to drop it. You do, and " + name + " notices, and laughs.", "white");
-                        Dialouge("You're embarassed. The chickens don't have to listen to Tony. You lose 10 confidence points.", "red");
-                        maisyConfidence = maisyConfidence - 10;
-                    }
-                    else
-                    {
-                        Dialouge("You decide to beg for food, as it is a particular skill of yours. You can either beg Tony or Fiona, as they're the only two in the kitchen.", "white");
-                        Dialouge("Do you beg Tony or Fiona?", "yellow");
-                        choiceSelect = Console.ReadLine();
-                        //fiona or tony results
-                        if (choiceSelect == "Fiona" || choiceSelect == "fiona")
-                        {
-                            Dialouge("You run up to Fiona. You get tangled in her legs and she stumbles over you.", "white");
-                            Dialouge("She instantly feels bad, and sneaks you a piece of chicken. This never happens! You arew so excited that you gain 25 confidence points!", "green");
-                            Dialouge(name + " watches you eat the chicken, and shudders. " + name + " loses 15 confidence points.", "red");
-                            maisyConfidence = maisyConfidence + 25;
-                            chickenConfidence = chickenConfidence - 15;
-                        }
-                        else
-                        {
-                            Dialouge("You stare at Tony. He doesn't notice you. He continues to not notice you. Maybe he's doing it on purpose?", "white");
-                            Dialouge("You get bored waiting. You decdie to do soemthing else. Nobody gains or loses points.", "gray");
-                        }
-                    }
-                }
-                //calls challenge prompt
-                Continue("scavenging");
-            }
-            else if (choiceSelect == "4")
-            {
-                // clears console for new prompts
-                Console.Clear();
-
-                // call train prompts
-                Dialouge("You have many toys that you can practice your battle moves against. There are no consiquences for what toy you chose, but some are better than others.", "white");
-                Dialouge("What toy do you choose? Type the number of the toy you chose.", "white");
-                Dialouge("1. LambChop    2. Old Cat Toys    3. Random Shoe    4. Well-Loved Squirrel", "yellow");
-                choiceSelect = Console.ReadLine();
-
-                //toy results
-                if (choiceSelect == "1")
-                {
-                    Dialouge("You choose to practice on your LambChop toy.", "white");
-                    Dialouge("It is easy to train! LambChop is about the size of " + name + ".", "white");
-                    Dialouge("Because it was so similar to your rival, you are filled with confidence, and gain 15 points!", "green");
-                    maisyConfidence = maisyConfidence + 15;
-                }
-                else if (choiceSelect == "2")
-                {
-                    Dialouge("You find some old cat toys under the couch. It belonged to your old pal Sushi. You decide to practice with the toys.", "white");
-                    Dialouge("The toys don't help very much, but remembering Sushi makes you happy. You gain 5 confidence points.", "green");
-                    maisyConfidence = maisyConfidence + 5;
-                }
-                else if (choiceSelect == "3")
-                {
-                    Dialouge("You find a random, lonely shoe. It is made of a thick leather.", "white");
-                    Dialouge("It is tough to train against. You push yourself harder and harder untill it is eventually easier to use your sick moves against it!", "white");
-                    Dialouge("You properly trained your skills, and they have grown because of your unwillingness to give up. You gain 20 confidence points!", "green");
-                    maisyConfidence = maisyConfidence + 20;
-                }
-                else
-                {
-                    Dialouge("You decide to train against your toy squirrel. Its been so loved by you that it is riddled with holes.", "white");
-                    Dialouge("It is easy to train, but too easy. You still get your practice in, but it isn't as helpful.", "white");
-                    Dialouge("You make sure you don't damage your toy. You still tried, so you gain 5 confidence points.", "green");
-                    maisyConfidence = maisyConfidence + 5;
-                }
-
-                //calls challenge prompt
-                Continue("training");
-            }
-            else if (choiceSelect == "5")
-            {
-                // clears console for new prompts
-                Console.Clear();
-                Challenge();
-            }
-            else
-            {
-                Console.Clear();
-                Dialouge("That's not an option. Try again.", "red");
-                MainGame();
-            }
 
         }
 
         /// <summary>
         /// challenging the chicken!
         /// </summary>
-        static void Challenge()
+        public static void Challenge()
         {
             Console.Clear();
             Dialouge("IT IS TIME! Do you have what it takes??", "white");
@@ -436,9 +228,7 @@ namespace Adventure
             {
                 Console.Clear();
                 MainGame();
-
             }
-
         }
 
         /// <summary>
@@ -459,7 +249,7 @@ namespace Adventure
             }
             else
             {
-                Dialouge("You lost. Better luck next time.", "red");          
+                Dialouge("You lost. Better luck next time.", "red");
                 Dialouge("   _\r\n _/ }\r\n`>' \\\r\n `|  \\\r\n  |  /'-.    .-.\r\n  \\'   ';`--' .'\r\n   \\'.   `'-./\r\n    '.`\"-..-;`\r\n      `;-..'\r\n      _| _|\r\n       /` /`", "red");
                 Dialouge("Not everything is bad, though. Tomorrow is another day. Do you try again, or just accept how pitiful you are?", "white");
                 Dialouge("Try again? Yes/no", "yellow");
@@ -484,7 +274,7 @@ namespace Adventure
         /// <summary>
         /// Displays action options, also shows confidence points.
         /// </summary>
-        static void Actions()
+        static void ShowActions()
         {
             Console.Clear();
             Console.WriteLine(" ");
@@ -517,7 +307,7 @@ namespace Adventure
         /// after action is done, prompt for if you want to keep doing things or if you want to challenge
         /// </summary>
         /// <param name="choiceOption"> The name of the action that was just done. </param>
-        static void Continue(string choiceOption)
+        public static void Continue(string choiceOption)
         {
             Console.WriteLine("---------------------------");
             Dialouge("You finished " + choiceOption + "!", "white");
@@ -551,7 +341,7 @@ namespace Adventure
         /// </summary>
         /// <param name="message"> The sting to be Displayed. </param>
         /// <param name="color"> The desired color of the text. Use all lowercase. </param>
-        static void Dialouge(string message, string color)
+        public static void Dialouge(string message, string color)
         {
             if (color == "red")
             { Console.ForegroundColor = ConsoleColor.Red; } // used for losing points
