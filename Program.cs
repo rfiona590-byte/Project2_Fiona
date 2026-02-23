@@ -265,7 +265,7 @@ namespace Adventure
                 else
                 {
                     Dialouge("You give up, officially. Hopefully nobody remembers this day. But you will.", "white");
-                    Dialouge("You always will. And so will" + name + ".", "white");
+                    Dialouge("You always will. And so will " + name + ".", "white");
                     Dialouge("GAME END!", "red");
                 }
             }
