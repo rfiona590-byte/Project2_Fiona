@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# VS Code build stuff
+*/obj
+*/bin
+
 # User-specific files
 *.rsuser
 *.suo
@@ -46,7 +50,7 @@ bld/
 #wwwroot/
 
 # Visual Studio 2017 auto generated files
-Generated\ Files/
+# Generated\ Files/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -95,6 +99,7 @@ StyleCopReport.xml
 *.pgc
 *.pgd
 *.rsp
+
 # but not Directory.Build.rsp, as it configures directory-level build defaults
 !Directory.Build.rsp
 *.sbr

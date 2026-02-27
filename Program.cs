@@ -44,7 +44,9 @@ namespace Adventure
         static int chickenConfidence = 0;
         static string name = "";
 
-        //starting the game. introduces game and sets initial maisy conidence
+        /// <summary>
+        /// starting the game. introduces game and sets initial maisy conidence
+        /// </summary>
         public static void StartGame()
         {
             Dialouge("Welcome to a Maisey Misadventure!", "cyan");
@@ -59,7 +61,9 @@ namespace Adventure
             SetConfidence();
         }
 
-        // asks about confidence, adjusts intial confidence based on answer
+        /// <summary>
+        /// asks about confidence, adjusts intial confidence based on answer
+        /// </summary>
         static void SetConfidence()
         {
             Console.Clear();
@@ -350,7 +354,9 @@ namespace Adventure
 
         }
 
-        //challenging the chicken!
+        /// <summary>
+        /// challenging the chicken!
+        /// </summary>
         static void Challenge()
         {
             Console.Clear();
@@ -435,7 +441,10 @@ namespace Adventure
 
         }
 
-        //ending
+        /// <summary>
+        ///  ending
+        /// </summary>
+        /// <param name="result"> reads "win" if the player won the game, anything less if the player lost the game.</param>
         static void Ending(string result)
         {
             Console.Clear();
@@ -472,7 +481,9 @@ namespace Adventure
             }
         }
 
-        //action options, also shoes confidence points, and reads what option is picked
+        /// <summary>
+        /// Displays action options, also shows confidence points.
+        /// </summary>
         static void Actions()
         {
             Console.Clear();
@@ -502,7 +513,10 @@ namespace Adventure
             }
         }
 
-        // after action is done, prompt for if you want to keep doing things or if you want to challenge
+        /// <summary>
+        /// after action is done, prompt for if you want to keep doing things or if you want to challenge
+        /// </summary>
+        /// <param name="choiceOption"> The name of the action that was just done. </param>
         static void Continue(string choiceOption)
         {
             Console.WriteLine("---------------------------");
@@ -532,7 +546,11 @@ namespace Adventure
             }
         }
 
-        //setting text color
+        /// <summary>
+        /// Displays a string to the console of the chosen color
+        /// </summary>
+        /// <param name="message"> The sting to be Displayed. </param>
+        /// <param name="color"> The desired color of the text. Use all lowercase. </param>
         static void Dialouge(string message, string color)
         {
             if (color == "red")
