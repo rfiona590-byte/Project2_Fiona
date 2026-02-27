@@ -3,28 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 
 namespace Adventure
 {
-    class Chicken
-    {
-        //attributes for chicken you challenge at end
-        public string Name; //chicken/mortal enemy name
-        public string StartingConfidence;
-        public int Confidence;
-
-        //constructs chicken
-        public Chicken(string selectName, string inputChickenConfidence)
-        {
-            Name = selectName;
-            StartingConfidence = inputChickenConfidence;
-            Confidence = int.Parse(inputChickenConfidence);
-        }
-
-    }
     class Program
-    {
+    {   
         static void Main()
         {
             //starting point
@@ -34,8 +19,11 @@ namespace Adventure
             Console.ReadKey();
         }
     }
+
     public static class Game
     {
+        public static Random Rand = new Random();
+        
         //setting up variables
         public static string confidenceCheck = "";
         public static int maisyConfidence = 0;
@@ -43,7 +31,7 @@ namespace Adventure
         public static string choiceSelect = "";
         public static string nameSelect = "";
         public static string confidenceSelect = "";
-        public static int chickenConfidence = 0;
+
         public static string name = "";
 
         /// <summary>
@@ -94,16 +82,15 @@ namespace Adventure
             nameSelect = Console.ReadLine();
             Dialouge("Now, from a scale of 1-75... How badly do you hate them??? Enter below.", "yellow");
             confidenceSelect = Console.ReadLine();
-            Chicken enemy = new Chicken(nameSelect, confidenceSelect);
-            chickenConfidence = enemy.Confidence;
-            name = enemy.Name;
+            Chicken.MakeChicken(nameSelect, confidenceSelect);
+            Chicken.Confidence = Chicken.Confidence;
+            name = Chicken.Name;
             Dialouge("   _\r\n _/ }\r\n`>' \\\r\n `|  \\\r\n  |  /'-.    .-.\r\n  \\'   ';`--' .'\r\n   \\'.   `'-./\r\n    '.`\"-..-;`\r\n      `;-..'\r\n      _| _|\r\n       /` /`", "red");
-            Dialouge("Starting " + name + " the chicken confidence points: " + chickenConfidence, "cyan");
+            Dialouge("Starting " + name + " the chicken confidence points: " + Chicken.Confidence, "cyan");
             Console.WriteLine("");
             Dialouge("Press enter to continue.", "yellow");
             moveOn = Console.ReadLine();
             Console.Clear();
-
         }
 
         //main game
@@ -156,7 +143,7 @@ namespace Adventure
             Dialouge("Below are the current point standings.", "white");
             Dialouge("    ", "red");
             Dialouge("Your points : " + maisyConfidence, "cyan");
-            Dialouge(name + " the chicken points : " + chickenConfidence, "cyan");
+            Dialouge(name + " the chicken points : " + Chicken.Confidence, "cyan");
             Dialouge("    ", "white");
             Dialouge("This is your last chance. Are you truly ready? Or are you having second thoughts?", "white");
             Dialouge("Continue training? Yes/no", "yellow");
@@ -182,7 +169,7 @@ namespace Adventure
                 moveOn = Console.ReadLine();
                 Console.Clear();
                 //deciding what happens!
-                int confidenceDiff = chickenConfidence - maisyConfidence;
+                int confidenceDiff = Chicken.Confidence - maisyConfidence;
                 if (confidenceDiff < 0)
                 {
                     Dialouge("your confidence is significantally higher than " + name + "'s!", "white");
@@ -281,7 +268,7 @@ namespace Adventure
             Dialouge("Right now, here are the current point standings:", "white");
             Console.WriteLine(" ");
             Dialouge("Your points : " + maisyConfidence, "cyan");
-            Dialouge(name + " the chicken points : " + chickenConfidence, "cyan");
+            Dialouge(name + " the chicken points : " + Chicken.Confidence, "cyan");
             Console.WriteLine(" ");
             Dialouge("As a dog, you have many activities you can partake in.", "white");
             Dialouge("Type the number to select one of the actvities below.", "white");
@@ -316,7 +303,7 @@ namespace Adventure
             Dialouge("Right now, here are the current point standings:", "white");
             Console.WriteLine(" ");
             Dialouge("Your points : " + maisyConfidence, "cyan");
-            Dialouge(name + " the chicken points : " + chickenConfidence, "cyan");
+            Dialouge(name + " the chicken points : " + Chicken.Confidence, "cyan");
             Console.WriteLine(" ");
 
             Dialouge("Do you want to continue with your day, or do you think you are finally ready to challenge the chickens?!", "yellow");

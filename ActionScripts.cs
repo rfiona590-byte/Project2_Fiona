@@ -33,7 +33,7 @@ class Actions()
                 Game.Dialouge("Everybody who passes you compliments you! They are shocked a dog is so good at geometry. Your confidence grows! You gain 15 confidence points.", "green");
                 Game.Dialouge("The chickens aren't as good at math. Your legs humble them, and they lose 10 confidence points.", "red");
                 Game.maisyConfidence += 15;
-                Game.chickenConfidence -= 10;
+                Chicken.EnemyStrengthens(2,true);
             }
             else if (Game.choiceSelect == "2")
             {
@@ -47,7 +47,7 @@ class Actions()
                 Game.Dialouge("People notice, and they laugh. They talk about how even the chickens can sit better than you. You're devastated, and you lose 10 confidence points.", "red");
                 Game.Dialouge("The chickens overhear the conversation. They gain 5 confidence points.", "green");
                 Game.maisyConfidence -= 10;
-                Game.chickenConfidence += 5;
+                Chicken.EnemyStrengthens(2);
             }
         }
 
@@ -80,15 +80,15 @@ class Actions()
                 Game.Dialouge("You bark, to intimidate, but " + Game.name + " just finds it funny. You lose 15 confidence points.", "red");
                 Game.Dialouge("The sad, pathetic look on your face makes " + Game.name + "'s confidence points get multiplied by 2!", "green");
                 Game.maisyConfidence -= 15;
-                Game.chickenConfidence = Game.chickenConfidence * 2;
+                Chicken.Confidence = Chicken.Confidence * 2;
             }
             else if (Game.choiceSelect == "3")
             {
                 Game.Dialouge("Tony is doing dangerous tricks on a moterized vehicle in the backyard. You watch him, and imagine yourself in his place.", "white");
                 Game.Dialouge("You imagine how intimadating you could be! The excitement alone makes you gain 30 confidence points!", "green");
-                Game.Dialouge("Tony scares the life out of the chickens. " + Game.name + " is especially spooked, and notices that you saw the extent of that fear. Embarassed, " + Game.name + "loses 30 confidence points.", "red");
+                Game.Dialouge("Tony scares the life out of the chickens. " + Game.name + " is especially spooked, and notices that you saw the extent of that fear. Embarassed, " + Game.name + " loses confidence points.", "red");
                 Game.maisyConfidence += 30;
-                Game.chickenConfidence -= 30;
+                Chicken.EnemyStrengthens(8,true);
             }
             else if (Game.choiceSelect == "2" || Game.choiceSelect == "4")
             {
@@ -107,7 +107,7 @@ class Actions()
             {
                 Game.Dialouge("You spot a family of chipmunks. There is one parent, and three children.", "white");
                 Game.Dialouge("You remember how recently you killed a chipmunk, and realize it must've belonged to that family. You feel guilty, and lose 10 confidence points.", "red");
-                Game.maisyConfidence -= 10;
+                Chicken.EnemyStrengthens(3,true);
             }
             else if (Game.choiceSelect == "2")
             {
@@ -115,7 +115,7 @@ class Actions()
                 Game.Dialouge("safe to say, you have a pretty solid plan, and your confidence doubles!", "green");
                 Game.Dialouge("In the backyard, " + Game.name + " feels an unexpected chill, like someone is planning evil things. " + Game.name + " loses 10 confidence points.", "red");
                 Game.maisyConfidence = Game.maisyConfidence * 2;
-                Game.chickenConfidence -= 10;
+                Chicken.EnemyStrengthens(3,true);
             }
             else if (Game.choiceSelect == "3")
             {
@@ -147,7 +147,7 @@ class Actions()
             Game.Dialouge(Game.name + " the chicken gathers all of the other chickens to watch you get bossed around. They all laugh, and you lose 20 confidence points.", "red");
             Game.Dialouge("Your public shaming raises " + Game.name + "'s confidence by 10 points.", "green");
             Game.maisyConfidence -= 20;
-            Game.chickenConfidence += 10;
+            Chicken.EnemyStrengthens(6);
         }
         else
         {
@@ -176,7 +176,7 @@ class Actions()
                     Game.Dialouge("She instantly feels bad, and sneaks you a piece of chicken. This never happens! You arew so excited that you gain 25 confidence points!", "green");
                     Game.Dialouge(Game.name + " watches you eat the chicken, and shudders. " + Game.name + " loses 15 confidence points.", "red");
                     Game.maisyConfidence += 25;
-                    Game.chickenConfidence -= 15;
+                    Chicken.EnemyStrengthens(5);
                 }
                 else
                 {
