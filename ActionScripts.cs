@@ -17,7 +17,7 @@ class Actions()
             Console.Clear();
             Game.Dialouge("You decide to take a nap normally, as any normal dog would do.", "white");
             Game.Dialouge("Nobody makes fun of you. You gain 5 confidence points.", "green");
-            Game.maisyConfidence += 5;
+            Game.UpdateMaisyConfidence(5);
         }
         else
         {
@@ -32,21 +32,21 @@ class Actions()
                 Game.Dialouge("You put alot of effort into making sure your front legs are perfectly parralell before you rest.", "white");
                 Game.Dialouge("Everybody who passes you compliments you! They are shocked a dog is so good at geometry. Your confidence grows! You gain 15 confidence points.", "green");
                 Game.Dialouge("The chickens aren't as good at math. Your legs humble them, and they lose 10 confidence points.", "red");
-                Game.maisyConfidence += 15;
+                Game.UpdateMaisyConfidence(15);
                 Chicken.EnemyStrengthens(2,true);
             }
             else if (Game.choiceSelect == "2")
             {
                 Game.Dialouge("You get inspired by your old cat pal. You decide to form a loaf in honor of him.", "white");
                 Game.Dialouge("Nobody really notices. You gain 5 confidence points.", "green");
-                Game.maisyConfidence += 5;
+                Game.UpdateMaisyConfidence(5);
             }
             else if (Game.choiceSelect == "3")
             {
                 Game.Dialouge("You flop around on the couch for a moment. After your done, you let whatever pose you're in be the pose you stick with.", "white");
                 Game.Dialouge("People notice, and they laugh. They talk about how even the chickens can sit better than you. You're devastated, and you lose 10 confidence points.", "red");
                 Game.Dialouge("The chickens overhear the conversation. They gain 5 confidence points.", "green");
-                Game.maisyConfidence -= 10;
+                Game.UpdateMaisyConfidence(10, true);
                 Chicken.EnemyStrengthens(2);
             }
         }
@@ -79,7 +79,7 @@ class Actions()
                 Game.Dialouge("You look at the chickens. You notice one in particular, " + Game.name + ", and make eye contact with him.", "white");
                 Game.Dialouge("You bark, to intimidate, but " + Game.name + " just finds it funny. You lose 15 confidence points.", "red");
                 Game.Dialouge("The sad, pathetic look on your face makes " + Game.name + "'s confidence points get multiplied by 2!", "green");
-                Game.maisyConfidence -= 15;
+                Game.UpdateMaisyConfidence(15,true);
                 Chicken.Confidence = Chicken.Confidence * 2;
             }
             else if (Game.choiceSelect == "3")
@@ -87,13 +87,14 @@ class Actions()
                 Game.Dialouge("Tony is doing dangerous tricks on a moterized vehicle in the backyard. You watch him, and imagine yourself in his place.", "white");
                 Game.Dialouge("You imagine how intimadating you could be! The excitement alone makes you gain 30 confidence points!", "green");
                 Game.Dialouge("Tony scares the life out of the chickens. " + Game.name + " is especially spooked, and notices that you saw the extent of that fear. Embarassed, " + Game.name + " loses confidence points.", "red");
-                Game.maisyConfidence += 30;
+                Game.UpdateMaisyConfidence(30);
                 Chicken.EnemyStrengthens(8,true);
             }
             else if (Game.choiceSelect == "2" || Game.choiceSelect == "4")
             {
-                Game.Dialouge("The backyard is especially barren. There is a distinct lack of birds or squirrels.", "white");
-                Game.Dialouge("You immediatly get bored, and decide to do something else. Nobody gains confidence points.", "gray");
+                Game.Dialouge("The backyard is especially barren... Exept for this cool stick.", "white");
+                Game.Dialouge("You pick up the stick and start carying it around.", "green");
+                Item.ChangeItem(1);
             }
         }
         else
@@ -121,7 +122,7 @@ class Actions()
             {
                 Game.Dialouge("You notice a squirrel on a tree that you recognize, since it visits the front yard often. Sometimes, you both look at eachother.", "white");
                 Game.Dialouge("At this point, you two are pretty much best friends! you assume that if you ever needed help, the squirrel would come help you. you gain 15 confidence points.", "green");
-                Game.maisyConfidence += 15;
+                Game.UpdateMaisyConfidence(15);
             }
         }
 
@@ -146,7 +147,7 @@ class Actions()
             Game.Dialouge("Tony yells at you to wait, and makes you do 5 spins in a row. You think you're getting food once you do the spins, but he tells you to sit and roll over 6 more times untill he lets you eat.", "white");
             Game.Dialouge(Game.name + " the chicken gathers all of the other chickens to watch you get bossed around. They all laugh, and you lose 20 confidence points.", "red");
             Game.Dialouge("Your public shaming raises " + Game.name + "'s confidence by 10 points.", "green");
-            Game.maisyConfidence -= 20;
+            Game.UpdateMaisyConfidence(20,true);
             Chicken.EnemyStrengthens(6);
         }
         else
@@ -162,21 +163,32 @@ class Actions()
                 Game.Dialouge("You put your dog abilities to work! You sniff around, hoping for a dropped piece of chicken or a shred of tomato.", "white");
                 Game.Dialouge("You find something! You aren't sure what you found, but you eat it anyway. Tony notices and yells at you to drop it. You do, and " + Game.name + " notices, and laughs.", "white");
                 Game.Dialouge("You're embarassed. The chickens don't have to listen to Tony. You lose 10 confidence points.", "red");
-                Game.maisyConfidence -= 10;
+                Game.UpdateMaisyConfidence(10,true);
             }
             else
             {
                 Game.Dialouge("You decide to beg for food, as it is a particular skill of yours. You can either beg Tony or Fiona, as they're the only two in the kitchen.", "white");
                 Game.Dialouge("Do you beg Tony or Fiona?", "yellow");
                 Game.choiceSelect = Console.ReadLine();
+                int strangeEggEncounter = Game.Rand.Next(1,5);
                 //fiona or tony results
                 if (Game.choiceSelect == "Fiona" || Game.choiceSelect == "fiona")
                 {
                     Game.Dialouge("You run up to Fiona. You get tangled in her legs and she stumbles over you.", "white");
                     Game.Dialouge("She instantly feels bad, and sneaks you a piece of chicken. This never happens! You arew so excited that you gain 25 confidence points!", "green");
                     Game.Dialouge(Game.name + " watches you eat the chicken, and shudders. " + Game.name + " loses 15 confidence points.", "red");
-                    Game.maisyConfidence += 25;
+                    Game.UpdateMaisyConfidence(25);
                     Chicken.EnemyStrengthens(5);
+                }
+                else if (strangeEggEncounter == 5)
+                {
+                    Game.Dialouge("You stare at Tony. He doesn't notice you. He continues to not notice you. Maybe he's doing it on purpose?", "white");
+                    Game.Dialouge("You see a strange egg. Do you want to pick it up?", "yellow");
+                    Game.choiceSelect = Console.ReadLine();
+                    if (Game.choiceSelect == "Yes" || Game.choiceSelect == "yes")
+                    {
+                        Item.ChangeItem(3);
+                    }
                 }
                 else
                 {
@@ -206,27 +218,27 @@ class Actions()
             Game.Dialouge("You choose to practice on your LambChop toy.", "white");
             Game.Dialouge("It is easy to train! LambChop is about the size of " + Game.name + ".", "white");
             Game.Dialouge("Because it was so similar to your rival, you are filled with confidence, and gain 15 points!", "green");
-            Game.maisyConfidence += 15;
+            Game.UpdateMaisyConfidence(15);
         }
         else if (Game.choiceSelect == "2")
         {
             Game.Dialouge("You find some old cat toys under the couch. It belonged to your old pal Sushi. You decide to practice with the toys.", "white");
             Game.Dialouge("The toys don't help very much, but remembering Sushi makes you happy. You gain 5 confidence points.", "green");
-            Game.maisyConfidence += 5;
+            Game.UpdateMaisyConfidence(5);
         }
         else if (Game.choiceSelect == "3")
         {
             Game.Dialouge("You find a random, lonely shoe. It is made of a thick leather.", "white");
             Game.Dialouge("It is tough to train against. You push yourself harder and harder untill it is eventually easier to use your sick moves against it!", "white");
-            Game.Dialouge("You properly trained your skills, and they have grown because of your unwillingness to give up. You gain 20 confidence points!", "green");
-            Game.maisyConfidence += 20;
+            Game.Dialouge("You decide its probably worth carrying it around.", "green");
+            Item.ChangeItem(2);
         }
         else
         {
             Game.Dialouge("You decide to train against your toy squirrel. Its been so loved by you that it is riddled with holes.", "white");
             Game.Dialouge("It is easy to train, but too easy. You still get your practice in, but it isn't as helpful.", "white");
             Game.Dialouge("You make sure you don't damage your toy. You still tried, so you gain 5 confidence points.", "green");
-            Game.maisyConfidence += 5;
+            Game.UpdateMaisyConfidence(5);
         }
 
         //calls challenge prompt

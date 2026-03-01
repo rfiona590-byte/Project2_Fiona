@@ -296,6 +296,7 @@ namespace Adventure
         /// <param name="choiceOption"> The name of the action that was just done. </param>
         public static void Continue(string choiceOption)
         {
+            Item.ItemStaleing();
             Console.WriteLine("---------------------------");
             Dialouge("You finished " + choiceOption + "!", "white");
             //Displays current point standings
@@ -345,6 +346,25 @@ namespace Adventure
 
             Console.WriteLine(message);
             Console.ResetColor();
+        }
+
+        /// <summary>
+        /// updates maisy's confidence while taking into acount the effects of items
+        /// </summary>
+        /// <param name="increaseAmount"> the amount of increase or decrease in confidence </param>
+        /// <param name="decrease"> weather of not the confidence is increased or decreased. set to false by default.</param>
+        public static void UpdateMaisyConfidence(int increaseAmount, bool decrease = false)
+        {
+        if (decrease == true)
+        {
+            maisyConfidence -= Item.confidenceScaler * increaseAmount;
+        }
+        else
+        {
+            maisyConfidence += Item.confidenceScaler * increaseAmount;
+        }
+
+        maisyConfidence += Item.maisyBonusConfidence;
         }
     }
 }
