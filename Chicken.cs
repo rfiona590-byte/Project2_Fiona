@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Adventure;
 
 static class Chicken
@@ -19,6 +20,11 @@ static class Chicken
         Confidence = int.Parse(inputChickenConfidence);
     }
 
+    /// <summary>
+    /// updates the chicken's confidence while taking into acount the effects of items, and an amount of randomness.
+    /// </summary>
+    /// <param name="increaseScale"> the size of the change. gets multiplied by a random number to create the scaling. </param>
+    /// <param name="decrease"> weather of not the confidence is increased or decreased. set to false by default.</param>
     static public void EnemyStrengthens(int increaseScale, bool decrease = false)
     {
         if (decrease == true)
@@ -27,7 +33,9 @@ static class Chicken
         }
         else
         {
-            Confidence += Game.Rand.Next(1,5) * increaseScale;
+            Confidence += Game.Rand.Next(1,5) * Item.chickenConfidenceScaler * increaseScale;
         }
+
+        Confidence += Item.chickenBonusConfidence;
     }
 }
